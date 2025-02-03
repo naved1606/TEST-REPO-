@@ -1,0 +1,11 @@
+# Write a function in an Object Orientated Programming language of your choice that, when passed a decimal digit X, 
+# calculates and returns the value of X + XX + XXX + XXXX. For example, if X is 3, the function should return 3702 (3 + 33 + 333 + 3333).
+# Ensure the function handles valid inputs and provides meaningful error messages for invalid inputs.
+
+
+def transform_digit(x):
+    if not(0<=x<=9):
+        raise ValueError("Input must be a single digit integer(0-9)")
+    return sum(int(str(x)*i) for i in range(1,5))
+
+print(transform_digit(3))

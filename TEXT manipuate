@@ -1,0 +1,8 @@
+# Question: Choose or create a text manipulation problem that involves using awk, sed, tr, and/or grep. Solve the problem, considering efficiency and readability.
+
+# ANSWER:
+
+To extract a 2nd cloumn from a file named example.text
+
+> we use 
+    awk -F ','{print$2}' example.text

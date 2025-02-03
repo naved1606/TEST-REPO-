@@ -1,0 +1,42 @@
+apiVersion:appV1
+kind:StatefulSEt
+meatdata:
+  name: my-statefulset
+spec:
+  serviceName:"myservice"
+  replicas:3
+  selector:
+    matchlabel:
+      app:my-app  
+  template:
+    metadata:
+      labels:
+        app:my-app
+    spec:
+      containers:
+      - name: my-container
+      image: nginx
+      resources:
+        requests:
+          memory:"256Mi"
+          cpu:"250m"
+        limits:
+          memory:"512Mi"
+          cpu:"500m" 
+      ports:
+        - containerPort: 80
+          name: "http-server"
+      volumeMounts:
+        - mountPath: "/data"
+          name: task-pv-storage        
+  volumeClaimTemplates:
+    -metadata:
+      name:"task-pv-storage"
+    spec:
+      accessmodes:["ReadWrite"]
+      resources:
+        requests:
+          storage:1Gi    
+
+
+

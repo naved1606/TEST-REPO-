@@ -1,0 +1,13 @@
+# Solve the text manipulation problem from the previous question using any Object Orientated Programming language of your choice. 
+# Provide a clear and well-documented solution.
+
+# ANSWER:
+
+import re                  #for a regular expression data
+
+class TextProcessor:
+  def extract_data(self, data, text):
+      return re.findall(r"data",text)
+
+processor=TextProcessor()
+print(processor.extract_data)    

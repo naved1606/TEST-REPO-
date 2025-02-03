@@ -1,0 +1,37 @@
+#Set up a streamlined build and deployment pipeline for the nginx application using GitHub Actions or an equivalent CI/CD tool. 
+#Ensure the pipeline covers building the Docker image, running security checks, and deploying to a Kubernetes cluster.
+
+pieline{
+
+    agent any
+    environment{
+        IMAGE_NAME="my-app:latest"
+    }
+    Stages{
+        stage("Build"){
+            steps{
+                sh "docker build -t $IMAGE_NAME ."
+            }
+        }
+        stage("Security Scan"){
+            steps{
+                sh "docker scan $IMAGE_NAME"
+            }
+        }
+        stage("Push to registry"){
+            steps{
+                sh"docker tag $IMAGE_NAME myrepo/$IMAGE_NAME"
+                sh"docker push myrepo/$IMAGE_NAME"
+            }
+        }
+        stage("Depoy to Kubernetes"){
+            steps{
+                sh"kubectl appy -f deployment.yml"
+            }
+        }
+
+    }
+
+}
+
+
